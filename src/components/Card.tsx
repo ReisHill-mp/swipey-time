@@ -1,5 +1,5 @@
 import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motion';
-import type { PanInfo, TargetAndTransition, VariantLabels, MotionStyle } from 'framer-motion';
+import type { PanInfo, MotionStyle } from 'framer-motion';
 import type { Category } from '../types/category';
 import { useEffect } from 'react';
 
@@ -50,7 +50,7 @@ export const Card = ({ category, isInitialCard, onSwipeRight, onSwipeLeft, image
     controls.set({ y: 0, rotate: 0, opacity: 1 });
   };
 
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = 100;
     const velocity = info.velocity.x;
 
