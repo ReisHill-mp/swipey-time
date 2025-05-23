@@ -283,8 +283,8 @@ export const SwipeyTime = () => {
       </div>
 
       {/* Main content area - Cards */}
-      <div className="flex-1 flex items-center justify-center w-full pt-16 pb-32">
-        <div className="card-stack w-[280px] h-[420px] relative">
+      <div className="flex-1 w-full pt-[72px] pb-32">
+        <div className="card-stack w-[280px] h-[420px] relative mx-auto">
           {isInitialCard ? (
             <Card
               isInitialCard
