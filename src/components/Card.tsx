@@ -85,8 +85,8 @@ export const Card = ({ category, isInitialCard, onSwipeRight, onSwipeLeft, image
   }, [triggerSwipeRight, triggerSwipeLeft]); // Depend on trigger props
 
   const cardStyle: MotionStyle = {
-    width: '320px',
-    height: '470px',
+    width: '280px',
+    height: '420px',
     borderRadius: '12px',
     border: '1px solid #8D8D8D',
     background: 'linear-gradient(180deg, #FFF 12.02%, #F8F8F9 79.33%)',
@@ -197,13 +197,14 @@ export const Card = ({ category, isInitialCard, onSwipeRight, onSwipeLeft, image
         <div className="h-full flex flex-col p-6 absolute inset-0" style={{ zIndex: 0 }}> 
            <h2 className="text-base font-bold mb-4" style={{ color: '#00204D' }}>{category.name}</h2>
            {imageUrls && imageUrls.length > 0 && (
-             <div className="grid grid-cols-2 gap-2 mb-4">
+             <div className="grid grid-cols-2 gap-3 mb-4">
                {imageUrls.map((url, index) => (
                  <img
                    key={index}
                    src={url}
                    alt={`${category.name} image ${index + 1}`}
-                   className="rounded-md object-cover" style={{ pointerEvents: 'none', width: '140px', height: '188px' }}
+                   className="rounded-md object-cover w-full h-[160px]" 
+                   style={{ pointerEvents: 'none' }}
                  />
                ))}
              </div>

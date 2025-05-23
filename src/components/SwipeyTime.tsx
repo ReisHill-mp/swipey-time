@@ -257,8 +257,9 @@ export const SwipeyTime = () => {
   const cardsToDisplay = categoriesWithImages.slice(currentIndex, currentIndex + 3);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
-      <div className="fixed top-0 left-0 right-0 bg-slate-50 p-4 z-50 w-full">
+    <div className="h-screen bg-slate-50 flex flex-col overflow-hidden">
+      {/* Header - Fixed at top */}
+      <div className="fixed top-0 left-0 right-0 bg-slate-50 p-3 z-50 w-full">
         <div className="flex items-center justify-between max-w-md mx-auto">
           <button
             onClick={handleRestart}
@@ -272,7 +273,7 @@ export const SwipeyTime = () => {
           <div className="w-6" />
         </div>
         {!isInitialCard && (
-          <div className="progress-bar-container mt-3 mx-auto">
+          <div className="progress-bar-container mt-2 mx-auto">
             <div
               className="progress-bar"
               style={{ width: `${progress}%` }}
@@ -281,12 +282,12 @@ export const SwipeyTime = () => {
         )}
       </div>
 
-      <div className="flex-grow flex items-center justify-center w-full mt-24 mb-32">
-        <div className="card-stack w-[320px] h-[470px] relative">
+      {/* Main content area - Cards */}
+      <div className="flex-1 flex items-center justify-center w-full pt-16 pb-32">
+        <div className="card-stack w-[280px] h-[420px] relative">
           {isInitialCard ? (
             <Card
               isInitialCard
-              // onSwipeRight and onSwipeLeft for the initial card now trigger the start
               onSwipeRight={() => setIsInitialCard(false)}
               onSwipeLeft={() => setIsInitialCard(false)}
               totalCategories={categories.length}
@@ -295,7 +296,6 @@ export const SwipeyTime = () => {
             />
           ) : (
             <>
-              {/* Only render the top card with swipe triggers */}
               {cardsToDisplay[0] && (
                 <div
                   key={cardsToDisplay[0].id}
@@ -316,7 +316,6 @@ export const SwipeyTime = () => {
                   />
                 </div>
               )}
-              {/* Render the stacked cards without swipe triggers */}
               {cardsToDisplay.slice(1).map((category, index) => (
                 <div
                   key={category.id}
@@ -342,23 +341,22 @@ export const SwipeyTime = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-slate-50 p-4 pb-6 z-50 w-full">
+      {/* Bottom CTAs - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-slate-50 p-3 pb-4 z-50 w-full">
         {isInitialCard ? (
            <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="flex flex-col items-center mb-3 max-w-md mx-auto px-6 space-y-3"
+            className="flex flex-col items-center mb-2 max-w-md mx-auto px-4 space-y-2"
           >
-             {/* Create Gift Suggestions Button */}
-            <button
+             <button
               onClick={() => { setHasInteractedWithInitialCard(true); handleSwipeRight(); }}
-              className="w-full bg-[#0054C8] text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-blue-600 transition-colors"
+              className="w-full bg-[#0054C8] text-white font-bold py-2.5 px-4 rounded-lg shadow hover:bg-blue-600 transition-colors"
             >
               Create gift suggestions
             </button>
-             {/* Skip Gifts Button */}
-            <button
+             <button
               onClick={() => { setHasInteractedWithInitialCard(true); handleSwipeLeft(); }}
               className="text-sm text-gray-600 hover:underline"
             >
@@ -370,21 +368,19 @@ export const SwipeyTime = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="flex justify-around items-center mb-3 max-w-md mx-auto px-6 space-x-3"
+            className="flex justify-around items-center mb-2 max-w-md mx-auto px-4 space-x-2"
           >
-            {/* Hide Button */}
             <button
               onClick={handleButtonSwipeLeft}
-              className="flex-1 bg-[#484848] text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-gray-700 transition-colors flex items-center justify-center space-x-2"
+              className="flex-1 bg-[#484848] text-white font-bold py-2.5 px-4 rounded-lg shadow hover:bg-gray-700 transition-colors flex items-center justify-center space-x-2"
               disabled={isAnimating}
             >
               <img src="/img/Icon.System.Eye.Closed.svg" alt="Hide" className="w-5 h-5" />
               <span>Hide</span>
             </button>
-            {/* Add Button */}
             <button
               onClick={handleButtonSwipeRight}
-              className="flex-1 text-white font-bold py-3 px-4 rounded-lg shadow hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2"
+              className="flex-1 text-white font-bold py-2.5 px-4 rounded-lg shadow hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2"
               style={{ backgroundColor: '#0054C8' }}
               disabled={isAnimating}
             >
@@ -402,7 +398,7 @@ export const SwipeyTime = () => {
           {!isInitialCard && (
             <button
               onClick={() => setShowResults(true)}
-              className="mt-4 bg-green-500 text-white font-semibold py-3 px-6 rounded-lg shadow hover:bg-green-600 transition-colors w-full md:w-auto"
+              className="mt-2 bg-green-500 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-green-600 transition-colors w-full md:w-auto"
             >
               Show {selectedCategories.length} of {categories.length} categories
             </button>
